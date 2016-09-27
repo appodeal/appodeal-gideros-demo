@@ -1,0 +1,36 @@
+<project>
+ <properties osx_category="5" version_code="1" encryptAssets="0" win_domain="giderosmobile.com" version="1.0" fps="60" encryptCode="0" winrt_package="com.yourdomain.yourapp" splash_h_image="" windowWidth="0" ios_bundle="com.appodeal.sandbox" html5_mem="256" osx_domain="giderosmobile.com" win_org="GiderosMobile" exportMode="1" mouseTouchOrder="0" osx_org="GiderosMobile" android_template="1" packageName="com.appodeal.test" html5_host="" disableSplash="0" autorotation="0" logicalHeight="480" backgroundColor="#ffffff" winrt_org="GiderosMobile" architecture="1" splash_v_image="" app_icon="" iosDevice="0" scaleMode="1" osx_bundle="com.yourdomain." mouseToTouch="1" orientation="0" windowHeight="0" tv_icon="" logicalWidth="320" retinaDisplay="0" touchToMouse="1">
+  <imageScales/>
+  <plugins/>
+  <exports>
+   <export name="APK">
+    <property value="" name="androidPath"/>
+    <property value="23" name="androidSdk"/>
+    <property value="19" name="androidTarget"/>
+    <property value="23.0.1" name="androidTools"/>
+    <property value="" name="javaPath"/>
+    <property value="" name="keyAlias"/>
+    <property value="" name="keyStore"/>
+    <property value="com.yourdomain.yourapp" name="packageName"/>
+   </export>
+  </exports>
+ </properties>
+ <folder name="buttons">
+  <file source="buttons/button_up7.png"/>
+  <file source="buttons/button_up6.png"/>
+  <file source="buttons/button_up5.png"/>
+  <file source="buttons/button_up4.png"/>
+  <file source="buttons/button_up3.png"/>
+  <file source="buttons/button_up2.png"/>
+  <file source="buttons/button_up1.png"/>
+  <file source="buttons/button_down7.png"/>
+  <file source="buttons/button_down6.png"/>
+  <file source="buttons/button_down5.png"/>
+  <file source="buttons/button_down4.png"/>
+  <file source="buttons/button_down3.png"/>
+  <file source="buttons/button_down2.png"/>
+  <file source="buttons/button_down1.png"/>
+ </folder>
+ <file source="button.lua"/>
+ <file source="main.lua"/>
+</project>
