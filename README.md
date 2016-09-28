@@ -15,3 +15,5 @@ Put all jar files files into your src\main\java folder, jar files into src\main\
 5) Add System.loadLibrary("ads") to the main activity and "com.giderosmobile.android.plugins.ads.Ads" to external classes.
 6) Modify Android manifest as described here: http://www.appodeal.com/sdk/documentation?framework=6&full=1&platform=1#p_3     
 6) Run project   
+
+In "ExportedToAndroidStudio" folder you can find ready-to-build Android Studio project
