@@ -2,14 +2,15 @@ require "ads"
 require "bit"
 local appodeal = Ads.new("appodeal")
 
-local INTERSTITIAL  = 1
-local VIDEO         = 2
-local BANNER        = 4
-local BANNER_BOTTOM = 8
-local BANNER_TOP    = 16
-local BANNER_CENTER = 32
-local ALL           = 127
-local ANY           = 127
+local NONE                = 0;
+local INTERSTITIAL        = 1;
+local SKIPPABLE_VIDEO     = 2;
+local BANNER              = 4;
+local BANNER_BOTTOM       = 8;
+local BANNER_TOP          = 16;
+local REWARDED_VIDEO      = 128;
+local NON_SKIPPABLE_VIDEO = 128;
+local ALL = 1023;
 
 -- create the up and down sprites for the button
 local up1 = Bitmap.new(Texture.new("buttons/button_up1.png"))
