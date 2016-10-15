@@ -26,7 +26,7 @@ import android.widget.ImageView;
 import com.giderosmobile.android.player.*;
 import com.appodeal.test.R;
 
-public class gidnewActivity extends Activity implements OnTouchListener
+public class AppodealDemoActivity extends Activity implements OnTouchListener
 {
 	static
 	{
@@ -352,7 +352,7 @@ class GiderosRenderer implements GLSurfaceView.Renderer
 			//GIDEROS-ACTIVITY-PREDRAW//
 			app.onDrawFrame();
 			//GIDEROS-ACTIVITY-POSTDRAW//
-			gidnewActivity.dismisSplash();
+			AppodealDemoActivity.dismisSplash();
 		}
 	}
 }
