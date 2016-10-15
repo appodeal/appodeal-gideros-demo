@@ -10,7 +10,7 @@ local BANNER_BOTTOM       = 8;
 local BANNER_TOP          = 16;
 local REWARDED_VIDEO      = 128;
 local NON_SKIPPABLE_VIDEO = 128;
-local ALL = 1023;
+local ALL	= 159;
 
 -- create the up and down sprites for the button
 local up1 = Bitmap.new(Texture.new("buttons/button_up1.png"))
@@ -88,7 +88,7 @@ buttonInitialize:addEventListener("click",
 		disableNetworks: all parameters after bannersAnimation will be recognized as disabled networks list
 		]]--
 		appodeal:setKey("fee50c333ff3825fd6ad6d38cff78154de3025546d47a84f", ALL, "false", "false", "false", "true", "false")
-		appodeal:loadAd(VIDEO)
+		appodeal:loadAd(SKIPPABLE_VIDEO)
 		appodeal:loadAd(INTERSTITIAL)
 		appodeal:loadAd(BANNER)
 		print("appodeal initialized")
@@ -103,7 +103,7 @@ buttonShowInterstitial:addEventListener("click",
 	end)
 buttonShowVideo:addEventListener("click", 
 	function() 
-		appodeal:showAd(VIDEO)
+		appodeal:showAd(SKIPPABLE_VIDEO)
 	end)
 buttonShowInterstitialOrVideo:addEventListener("click", 
 	function() 

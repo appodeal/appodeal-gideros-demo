@@ -1,4 +1,5 @@
 <project>
+ <properties splash_v_image="" encryptAssets="0" osx_category="5" app_icon="" version_code="1" logicalHeight="480" winrt_org="GiderosMobile" ios_bundle="com.appodeal.sandbox" iosDevice="0" disableSplash="0" osx_org="GiderosMobile" exportMode="1" mouseTouchOrder="0" autorotation="0" osx_bundle="com.yourdomain." encryptCode="0" packageName="com.appodeal.test" scaleMode="1" winrt_package="com.yourdomain.yourapp" orientation="0" backgroundColor="#ffffff" windowWidth="0" tv_icon="" retinaDisplay="0" version="1.0" architecture="1" html5_host="" win_domain="giderosmobile.com" android_template="1" mouseToTouch="1" touchToMouse="1" windowHeight="0" osx_domain="giderosmobile.com" logicalWidth="320" splash_h_image="" win_org="GiderosMobile" fps="60" html5_mem="256">
   <imageScales/>
   <plugins/>
   <exports>
