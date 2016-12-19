@@ -288,32 +288,32 @@ public class Ads {
 	}
 	
 	//load an Ad
-	public static void loadAd(final String adprovider, final Object parameters){
-		if(!hasConnection())
-		{
-			SparseArray<String> param = (SparseArray<String>)parameters;
-			adFailed(adprovider, "No Internet Connection", param.get(0));
-			return;
-		}
-		final String adp = modifyName(adprovider);
-		try
-		{	
-			// Non UI thread
-			Runnable myRunnable = new Runnable(){
-				
-				@Override
-				public void run() {
-					if(ads.containsKey(adp))
-					{
-						ads.get(adp).loadAd(parameters);
+		public static void loadAd(final String adprovider, final Object parameters){
+			if(!hasConnection())
+	        {
+	            SparseArray<String> param = (SparseArray<String>)parameters;
+	            adFailed(adprovider, "No Internet Connection", param.get(0));
+	            return;
+	        }
+			final String adp = modifyName(adprovider);
+			try
+			{	
+				// Non UI thread
+				Runnable myRunnable = new Runnable(){
+					
+					@Override
+					public void run() {
+						if(ads.containsKey(adp))
+						{
+							ads.get(adp).loadAd(parameters);
+						}
 					}
-				}
-				
-			};
-			sActivity.get().runOnUiThread(myRunnable) ;
+					
+				};
+				sActivity.get().runOnUiThread(myRunnable) ;
+			}
+			catch(Exception ex)	{}
 		}
-		catch(Exception ex)	{}
-	}
 		
 	public static void showAd(final String adprovider, final Object parameters){
 		if(!hasConnection())

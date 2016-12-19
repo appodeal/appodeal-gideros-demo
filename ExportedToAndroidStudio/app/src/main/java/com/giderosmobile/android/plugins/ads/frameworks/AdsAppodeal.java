@@ -10,7 +10,6 @@ import com.appodeal.ads.Appodeal;
 import com.appodeal.ads.BannerCallbacks;
 import com.appodeal.ads.InterstitialCallbacks;
 import com.appodeal.ads.RewardedVideoCallbacks;
-import com.appodeal.ads.SkippableVideoCallbacks;
 import com.appodeal.ads.NonSkippableVideoCallbacks;
 import com.giderosmobile.android.plugins.ads.*;
 
@@ -75,7 +74,7 @@ public class AdsAppodeal implements AdsInterface {
 		bannerAnimation = getParameter(param, BANNER_ANIMATION, bannerAnimation);
 		
 		Appodeal.setAutoCache(adType, autoCache);
-		Appodeal.setOnLoadedTriggerBoth(adType, setTrigger);
+		Appodeal.setTriggerOnLoadedOnPrecache(adType, setTrigger);
 		Appodeal.setSmartBanners(smartBanners);
 		Appodeal.set728x90Banners(bigBanners);
 		Appodeal.setBannerAnimation(bannerAnimation);
@@ -84,7 +83,7 @@ public class AdsAppodeal implements AdsInterface {
 			adNetwork = param.get(i);
 			Appodeal.disableNetwork(sActivity.get(), adNetwork);
 		}
-		Appodeal.confirm(Appodeal.SKIPPABLE_VIDEO);
+		Appodeal.confirm(Appodeal.INTERSTITIAL);
 		Appodeal.initialize(sActivity.get(), appKey, adType);
 		Appodeal.setInterstitialCallbacks(new InterstitialCallbacks() {
 			@Override
@@ -101,22 +100,9 @@ public class AdsAppodeal implements AdsInterface {
 			
 			@Override
 			public void onInterstitialClicked() {Ads.adActionBegin(this, "interstitial");}
-		});
-		Appodeal.setSkippableVideoCallbacks(new SkippableVideoCallbacks() {
-			@Override
-			public void onSkippableVideoShown() {Ads.adDisplayed(this, "skippablevideo");}
 			
 			@Override
-			public void onSkippableVideoLoaded() {Ads.adReceived(this, "skippablevideo");}
-			
-			@Override
-			public void onSkippableVideoFailedToLoad() {Ads.adFailed(this, "skippablevideo", "Failed to receive");}
-			
-			@Override
-			public void onSkippableVideoClosed(boolean finished) {Ads.adDismissed(this, "skippablevideo");}
-			
-			@Override
-			public void onSkippableVideoFinished() {Ads.adActionEnd(this, "skippablevideo");}
+			public void onInterstitialFinished() {Ads.adActionEnd(this, "interstitial");}
 		});
 		Appodeal.setNonSkippableVideoCallbacks(new NonSkippableVideoCallbacks() {
 			@Override

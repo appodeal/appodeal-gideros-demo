@@ -3,8 +3,7 @@ require "bit"
 local appodeal = Ads.new("appodeal")
 
 local NONE                = 0;
-local INTERSTITIAL        = 1;
-local SKIPPABLE_VIDEO     = 2;
+local INTERSTITIAL        = 3;
 local BANNER              = 4;
 local BANNER_BOTTOM       = 8;
 local BANNER_TOP          = 16;
@@ -25,8 +24,6 @@ local down3 = Bitmap.new(Texture.new("buttons/button_down3.png"))
 local up4 = Bitmap.new(Texture.new("buttons/button_up4.png"))
 local down4 = Bitmap.new(Texture.new("buttons/button_down4.png"))
 
-local up5 = Bitmap.new(Texture.new("buttons/button_up5.png"))
-local down5 = Bitmap.new(Texture.new("buttons/button_down5.png"))
 
 local up6 = Bitmap.new(Texture.new("buttons/button_up6.png"))
 local down6 = Bitmap.new(Texture.new("buttons/button_down6.png"))
@@ -37,7 +34,6 @@ local buttonInitialize = Button.new(up1, down1)
 local buttonShowBanner = Button.new(up2, down2)
 local buttonShowInterstitial = Button.new(up3, down3)
 local buttonShowVideo = Button.new(up4, down4)
-local buttonShowInterstitialOrVideo = Button.new(up5, down5)
 local buttonHideBanner = Button.new(up6, down6)
 
 local buttonsXPosition = application:getContentWidth() / 2 - (up1:getWidth() / 2)
@@ -46,8 +42,7 @@ buttonInitialize:setPosition(buttonsXPosition, 10)
 buttonShowBanner:setPosition(buttonsXPosition, 80)
 buttonShowInterstitial:setPosition(buttonsXPosition, 150)
 buttonShowVideo:setPosition(buttonsXPosition, 220)
-buttonShowInterstitialOrVideo:setPosition(buttonsXPosition, 290)
-buttonHideBanner:setPosition(buttonsXPosition, 360)
+buttonHideBanner:setPosition(buttonsXPosition, 290)
 
 -- callbacks
 
@@ -61,7 +56,8 @@ appodeal:addEventListener(Event.AD_FAILED, function(e)
 end)
 
 appodeal:addEventListener(Event.AD_ACTION_END, function(e)
-
+  alertDialog = AlertDialog.new("Ads callback AD_ACTION_END", e.type, "Ok")
+  alertDialog:show()
 end)
 
 appodeal:addEventListener(Event.AD_DISMISSED, function(e)
@@ -88,7 +84,7 @@ buttonInitialize:addEventListener("click",
 		disableNetworks: all parameters after bannersAnimation will be recognized as disabled networks list
 		]]--
 		appodeal:setKey("fee50c333ff3825fd6ad6d38cff78154de3025546d47a84f", ALL, "false", "false", "false", "true", "false")
-		appodeal:loadAd(SKIPPABLE_VIDEO)
+		appodeal:loadAd(REWARDED_VIDEO)
 		appodeal:loadAd(INTERSTITIAL)
 		appodeal:loadAd(BANNER)
 		print("appodeal initialized")
@@ -103,11 +99,7 @@ buttonShowInterstitial:addEventListener("click",
 	end)
 buttonShowVideo:addEventListener("click", 
 	function() 
-		appodeal:showAd(SKIPPABLE_VIDEO)
-	end)
-buttonShowInterstitialOrVideo:addEventListener("click", 
-	function() 
-		appodeal:showAd(bit.bor(VIDEO, INTERSTITIAL))
+		appodeal:showAd(REWARDED_VIDEO)
 	end)
 buttonHideBanner:addEventListener("click", 
 	function() 
@@ -119,5 +111,4 @@ stage:addChild(buttonInitialize)
 stage:addChild(buttonShowBanner)
 stage:addChild(buttonShowInterstitial)
 stage:addChild(buttonShowVideo)
-stage:addChild(buttonShowInterstitialOrVideo)
 stage:addChild(buttonHideBanner)
