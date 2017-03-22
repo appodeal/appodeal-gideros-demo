@@ -9,45 +9,49 @@ local BANNER              = 4;
 local BANNER_BOTTOM       = 8;
 local BANNER_TOP          = 16;
 local REWARDED_VIDEO      = 128;
-local NON_SKIPPABLE_VIDEO = 128;
-local ALL	= 159;
+local NON_SKIPPABLE_VIDEO = 256;
 
 -- create the up and down sprites for the button
-local up1 = Bitmap.new(Texture.new("buttons/button_up1.png"))
-local down1 = Bitmap.new(Texture.new("buttons/button_down1.png"))
+local init_up = Bitmap.new(Texture.new("buttons/init.png"))
+local init_down = Bitmap.new(Texture.new("buttons/init_down.png"))
 
-local up2 = Bitmap.new(Texture.new("buttons/button_up2.png"))
-local down2 = Bitmap.new(Texture.new("buttons/button_down2.png"))
+local interstitial_up = Bitmap.new(Texture.new("buttons/interstitial.png"))
+local interstitial_down = Bitmap.new(Texture.new("buttons/interstitial_down.png"))
 
-local up3 = Bitmap.new(Texture.new("buttons/button_up3.png"))
-local down3 = Bitmap.new(Texture.new("buttons/button_down3.png"))
+local skippable_up = Bitmap.new(Texture.new("buttons/skippable.png"))
+local skippable_down = Bitmap.new(Texture.new("buttons/skippable_down.png"))
 
-local up4 = Bitmap.new(Texture.new("buttons/button_up4.png"))
-local down4 = Bitmap.new(Texture.new("buttons/button_down4.png"))
+local intskip_up = Bitmap.new(Texture.new("buttons/intskip.png"))
+local intskip_down = Bitmap.new(Texture.new("buttons/intskip_down.png"))
 
-local up5 = Bitmap.new(Texture.new("buttons/button_up5.png"))
-local down5 = Bitmap.new(Texture.new("buttons/button_down5.png"))
+local rewarded_up = Bitmap.new(Texture.new("buttons/rewarded.png"))
+local rewarded_down = Bitmap.new(Texture.new("buttons/rewarded_down.png"))
 
-local up6 = Bitmap.new(Texture.new("buttons/button_up6.png"))
-local down6 = Bitmap.new(Texture.new("buttons/button_down6.png"))
+local banner_up = Bitmap.new(Texture.new("buttons/banner.png"))
+local banner_down = Bitmap.new(Texture.new("buttons/banner_down.png"))
 
--- create the button
+local hideanner_up = Bitmap.new(Texture.new("buttons/hidebanner.png"))
+local hidebanner_down = Bitmap.new(Texture.new("buttons/hidebanner_down.png"))
 
-local buttonInitialize = Button.new(up1, down1)
-local buttonShowBanner = Button.new(up2, down2)
-local buttonShowInterstitial = Button.new(up3, down3)
-local buttonShowVideo = Button.new(up4, down4)
-local buttonShowInterstitialOrVideo = Button.new(up5, down5)
-local buttonHideBanner = Button.new(up6, down6)
+-- create the buttons
 
-local buttonsXPosition = application:getContentWidth() / 2 - (up1:getWidth() / 2)
+local buttonInitialize = Button.new(init_up, init_down)
+local buttonShowBanner = Button.new(banner_up, banner_down)
+local buttonHideBanner = Button.new(hideanner_up, hidebanner_down)
+local buttonShowInterstitial = Button.new(interstitial_up, interstitial_down)
+local buttonShowSkippableVideo = Button.new(skippable_up, skippable_down)
+local buttonShowInterstitialOrVideo = Button.new(intskip_up, intskip_down)
+local buttonShowRewardedVideo = Button.new(rewarded_up, rewarded_down)
+
+local buttonsXPosition = application:getContentWidth() / 2 - (init_up:getWidth() / 2)
 
 buttonInitialize:setPosition(buttonsXPosition, 10)
-buttonShowBanner:setPosition(buttonsXPosition, 80)
-buttonShowInterstitial:setPosition(buttonsXPosition, 150)
-buttonShowVideo:setPosition(buttonsXPosition, 220)
-buttonShowInterstitialOrVideo:setPosition(buttonsXPosition, 290)
-buttonHideBanner:setPosition(buttonsXPosition, 360)
+buttonShowBanner:setPosition(buttonsXPosition, 60)
+buttonShowInterstitial:setPosition(buttonsXPosition, 110)
+buttonShowSkippableVideo:setPosition(buttonsXPosition, 160)
+buttonShowInterstitialOrVideo:setPosition(buttonsXPosition, 210)
+buttonShowRewardedVideo:setPosition(buttonsXPosition, 260)
+buttonHideBanner:setPosition(buttonsXPosition, 310)
 
 -- callbacks
 
@@ -81,14 +85,12 @@ buttonInitialize:addEventListener("click",
 		adTypes: types which you want to use in your application. It's possible to specify two or more types with bit library
 					bit.bor(SKIPPABLE_VIDEO, INTERSTITIAL)
 		autoCache: specify "true" to start load ads immediately after a setKey call
-		triggerPrecache: call AD_RECEIVED after precache loaded
 		smartBanners: enable or disable smart banners
-		banners728x90: enable or disable banners with size 728x90
-		bannersAnimation: enable or disable banners animation
 		disableNetworks: all parameters after bannersAnimation will be recognized as disabled networks list
 		]]--
-		appodeal:setKey("fee50c333ff3825fd6ad6d38cff78154de3025546d47a84f", ALL, "false", "false", "false", "true", "false")
+		appodeal:setKey("fee50c333ff3825fd6ad6d38cff78154de3025546d47a84f", bit.bor(SKIPPABLE_VIDEO, INTERSTITIAL, BANNER, REWARDED_VIDEO), "f", "false")
 		appodeal:loadAd(SKIPPABLE_VIDEO)
+		appodeal:loadAd(REWARDED_VIDEO)
 		appodeal:loadAd(INTERSTITIAL)
 		appodeal:loadAd(BANNER)
 		print("appodeal initialized")
@@ -101,13 +103,17 @@ buttonShowInterstitial:addEventListener("click",
 	function() 
 		appodeal:showAd(INTERSTITIAL)
 	end)
-buttonShowVideo:addEventListener("click", 
+buttonShowSkippableVideo:addEventListener("click", 
 	function() 
 		appodeal:showAd(SKIPPABLE_VIDEO)
 	end)
+buttonShowRewardedVideo:addEventListener("click", 
+	function() 
+		appodeal:showAd(REWARDED_VIDEO)
+	end)
 buttonShowInterstitialOrVideo:addEventListener("click", 
 	function() 
-		appodeal:showAd(bit.bor(VIDEO, INTERSTITIAL))
+		appodeal:showAd(bit.bor(SKIPPABLE_VIDEO, INTERSTITIAL))
 	end)
 buttonHideBanner:addEventListener("click", 
 	function() 
@@ -118,6 +124,7 @@ application:setBackgroundColor(0xef3326)
 stage:addChild(buttonInitialize)
 stage:addChild(buttonShowBanner)
 stage:addChild(buttonShowInterstitial)
-stage:addChild(buttonShowVideo)
+stage:addChild(buttonShowSkippableVideo)
 stage:addChild(buttonShowInterstitialOrVideo)
+stage:addChild(buttonShowRewardedVideo)
 stage:addChild(buttonHideBanner)

@@ -22,9 +22,15 @@ import android.view.Gravity;
 import android.graphics.Color;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.view.inputmethod.BaseInputConnection;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.text.InputType;
 
 import com.giderosmobile.android.player.*;
 import com.appodeal.test.R;
+
+//GIDEROS-ACTIVITY-IMPORT//
 
 public class AppodealDemoActivity extends Activity implements OnTouchListener
 {
@@ -33,21 +39,20 @@ public class AppodealDemoActivity extends Activity implements OnTouchListener
 		System.loadLibrary("gvfs");
 		System.loadLibrary("lua");
 		System.loadLibrary("gideros");
-
-		System.loadLibrary("luasocket");
-		System.loadLibrary("lfs");
+		//Line below is a marker for plugin insertion scripts. Do not remove or change
+		//GIDEROS-STATIC-INIT//
 		System.loadLibrary("lsqlite3");
+		System.loadLibrary("luasocket");
 		System.loadLibrary("json");
 		System.loadLibrary("bitop");
 		System.loadLibrary("ads");
-		//Line below is a marker for plugin insertion scripts. Do not remove or change
-		//GIDEROS-STATIC-INIT//
+		System.loadLibrary("lfs");
 	}
 
 	static private String[] externalClasses = {
 		//Line below is a marker for plugin insertion scripts. Do not remove or change
 		//GIDEROS-EXTERNAL-CLASS//
-			"com.giderosmobile.android.plugins.ads.Ads",
+		"com.giderosmobile.android.plugins.ads.Ads",
 			null
 	};
 	
@@ -109,7 +114,8 @@ public class AppodealDemoActivity extends Activity implements OnTouchListener
 		
 		WeakActivityHolder.set(this);
 
-		GiderosApplication.onCreate(externalClasses);
+		GiderosApplication.onCreate(externalClasses,mGLView);
+        processIntent(getIntent());
 	}
 
 	int[] id = new int[256];
@@ -117,6 +123,19 @@ public class AppodealDemoActivity extends Activity implements OnTouchListener
 	int[] y = new int[256];
     float[] pressure = new float[256];
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        processIntent(intent);
+    }
+    
+    protected void processIntent(Intent intent)
+    {
+		//Line below is a marker for plugin insertion scripts. Do not remove or change
+		//GIDEROS-PROCESS-INTENT//
+    	//Wouldn't it be cool to process URL open requests here too ?
+    }
+    
 	@Override
 	public void onStart()
 	{
@@ -273,6 +292,20 @@ public class AppodealDemoActivity extends Activity implements OnTouchListener
 		
 		return super.onKeyUp(keyCode, event);
     }
+	
+	
+	@Override
+    public boolean onKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
+		GiderosApplication app = GiderosApplication.getInstance();
+		if (app != null && app.onKeyMultiple(keyCode, repeatCount, event) == true)
+			return true;
+		
+		return super.onKeyMultiple(keyCode, repeatCount, event);
+    }	
+
+	public void onRequestPermissionsResult(int requestCode,
+			String permissions[], int[] grantResults) {
+	}
     
     //GIDEROS-ACTIVTIY-METHODS//
     
@@ -327,6 +360,28 @@ class GiderosGLSurfaceView extends GLSurfaceView
 			{
 			}
 		}
+		setFocusable(true);
+		setFocusableInTouchMode(true);
+	}
+	
+	@Override
+	public InputConnection onCreateInputConnection(EditorInfo outAttrs)
+	{
+	    outAttrs.actionLabel = "";
+	    outAttrs.hintText = "";
+	    outAttrs.initialCapsMode = 0;
+	    outAttrs.initialSelEnd = outAttrs.initialSelStart = -1;
+	    outAttrs.label = "";
+	    outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE | EditorInfo.IME_FLAG_NO_EXTRACT_UI;        
+	    outAttrs.inputType = InputType.TYPE_NULL;        
+
+	    return  new BaseInputConnection(this, false);       
+	}     
+
+	@Override
+	public boolean onCheckIsTextEditor ()
+	{
+	    return true;
 	}
 
 	GiderosRenderer mRenderer;

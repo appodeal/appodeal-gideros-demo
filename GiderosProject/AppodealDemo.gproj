@@ -1,33 +1,75 @@
 <project>
- <properties splash_v_image="" encryptAssets="0" osx_category="5" app_icon="" version_code="1" logicalHeight="480" winrt_org="GiderosMobile" ios_bundle="com.appodeal.sandbox" iosDevice="0" disableSplash="0" osx_org="GiderosMobile" exportMode="1" mouseTouchOrder="0" autorotation="0" osx_bundle="com.yourdomain." encryptCode="0" packageName="com.appodeal.test" scaleMode="1" winrt_package="com.yourdomain.yourapp" orientation="0" backgroundColor="#ffffff" windowWidth="0" tv_icon="" retinaDisplay="0" version="1.0" architecture="1" html5_host="" win_domain="giderosmobile.com" android_template="1" mouseToTouch="1" touchToMouse="1" windowHeight="0" osx_domain="giderosmobile.com" logicalWidth="320" splash_h_image="" win_org="GiderosMobile" fps="60" html5_mem="256">
+ <properties win_org="GiderosMobile" mouseTouchOrder="0" osx_domain="giderosmobile.com" exportMode="2" logicalWidth="320" tv_icon="" scaleMode="5" packageName="com.appodeal.test" encryptCode="0" winrt_org="GiderosMobile" backgroundColor="#ffffff" version_code="1" winrt_package="com.yourdomain.yourapp" logicalHeight="480" win_domain="giderosmobile.com" android_template="1" iosDevice="0" splash_v_image="" orientation="0" html5_host="" html5_mem="256" app_icon="" windowWidth="0" version="1.0" splash_h_image="" splashScaleMode="0" disableSplash="0" ios_bundle="com.appodeal.test" fps="60" build_number="1" architecture="1" autorotation="0" retinaDisplay="0" osx_org="GiderosMobile" mouseToTouch="1" osx_bundle="com.yourdomain." touchToMouse="1" app_name="" osx_category="5" windowHeight="0" encryptAssets="0">
   <imageScales/>
-  <plugins/>
+  <plugins>
+   <plugin name="Media plugin" enabled="0"/>
+   <plugin name="Google Play Services" enabled="0"/>
+   <plugin name="Lpeg" enabled="0"/>
+   <plugin name="Gaming" enabled="0"/>
+   <plugin name="Lua Socket" enabled="1"/>
+   <plugin name="Clipper" enabled="0"/>
+   <plugin name="Struct" enabled="0"/>
+   <plugin name="Controller" enabled="0"/>
+   <plugin name="LuaSqlite3" enabled="1"/>
+   <plugin name="Exampleplugin" enabled="0"/>
+   <plugin name="Countly" enabled="0"/>
+   <plugin name="Bitop" enabled="1"/>
+   <plugin name="Ads" enabled="1">
+    <property name="adsFwAdmob" value="0"/>
+    <property name="adsFwAdmobBanner" value=""/>
+    <property name="adsFwAdmobClient" value=""/>
+    <property name="adsFwAdmobInterstitial" value=""/>
+    <property name="adsFwApplovin" value="0"/>
+    <property name="adsFwApplovinKey" value=""/>
+    <property name="adsFwChartboost" value="0"/>
+    <property name="adsFwKiip" value="0"/>
+    <property name="adsFwKiipKey" value=""/>
+    <property name="adsFwKiipKeyIos" value=""/>
+    <property name="adsFwUnity" value="0"/>
+    <property name="gmsAppId" value=""/>
+    <property name="gmsVersion" value="9.8.0"/>
+   </plugin>
+   <plugin name="Native" enabled="0"/>
+   <plugin name="Store Detector" enabled="0"/>
+   <plugin name="LuaFileSystem" enabled="1"/>
+   <plugin name="Iab" enabled="0"/>
+   <plugin name="Flurry" enabled="0"/>
+   <plugin name="Require" enabled="0"/>
+   <plugin name="Camera" enabled="0"/>
+   <plugin name="Microphone" enabled="0"/>
+   <plugin name="Facebook" enabled="0"/>
+   <plugin name="JSON" enabled="1"/>
+  </plugins>
   <exports>
    <export name="APK">
-    <property value="" name="androidPath"/>
-    <property value="23" name="androidSdk"/>
-    <property value="19" name="androidTarget"/>
-    <property value="23.0.1" name="androidTools"/>
-    <property value="" name="javaPath"/>
-    <property value="" name="keyAlias"/>
-    <property value="" name="keyStore"/>
-    <property value="com.yourdomain.yourapp" name="packageName"/>
+    <property name="androidPath" value=""/>
+    <property name="androidSdk" value="23"/>
+    <property name="androidTarget" value="22"/>
+    <property name="androidTools" value="23.0.1"/>
+    <property name="buildApk" value="0"/>
+    <property name="deployApk" value="0"/>
+    <property name="javaPath" value=""/>
+    <property name="keyAlias" value=""/>
+    <property name="keyStore" value=""/>
+    <property name="packageName" value="com.appodeal.test"/>
    </export>
   </exports>
  </properties>
  <folder name="buttons">
-  <file source="buttons/button_up6.png"/>
-  <file source="buttons/button_up5.png"/>
-  <file source="buttons/button_up4.png"/>
-  <file source="buttons/button_up3.png"/>
-  <file source="buttons/button_up2.png"/>
-  <file source="buttons/button_up1.png"/>
-  <file source="buttons/button_down6.png"/>
-  <file source="buttons/button_down5.png"/>
-  <file source="buttons/button_down4.png"/>
-  <file source="buttons/button_down3.png"/>
-  <file source="buttons/button_down2.png"/>
-  <file source="buttons/button_down1.png"/>
+  <file source="buttons/skippable.png"/>
+  <file source="buttons/skippable_down.png"/>
+  <file source="buttons/rewarded.png"/>
+  <file source="buttons/rewarded_down.png"/>
+  <file source="buttons/intskip.png"/>
+  <file source="buttons/intskip_down.png"/>
+  <file source="buttons/interstitial.png"/>
+  <file source="buttons/interstitial_down.png"/>
+  <file source="buttons/init.png"/>
+  <file source="buttons/init_down.png"/>
+  <file source="buttons/hidebanner.png"/>
+  <file source="buttons/hidebanner_down.png"/>
+  <file source="buttons/banner.png"/>
+  <file source="buttons/banner_down.png"/>
  </folder>
  <file source="button.lua"/>
  <file source="main.lua"/>

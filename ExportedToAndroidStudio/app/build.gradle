@@ -1,20 +1,20 @@
 apply plugin: 'com.android.application'
 android {
-    compileSdkVersion 21
-    buildToolsVersion "22.0.0"
+    compileSdkVersion 23
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "com.appodeal.test"
         minSdkVersion 9
-        targetSdkVersion 19
+        targetSdkVersion 22
     }
     
     signingConfigs {
         release {
-            //storeFile file("jksgid_StoreFile")
-            storePassword "jksgid_StorePass"
-            keyAlias "jksgid_KeyAlias"
-            keyPassword "jksgid_KeyPass"
+            //storeFile file("")
+            storePassword ""
+            keyAlias ""
+            keyPassword ""
         }
     }    
     
@@ -28,17 +28,18 @@ android {
     }    
 }
 
+repositories {
+   flatDir {
+       dirs 'libs'
+   }
+}
+
 dependencies {
     compile files('libs/gideros.jar')
+    compile fileTree(include: ['*.jar'], dir: 'libs/Appodeal')
+    compile(name: 'cheetah-mobile-3.4.7', ext: 'aar')
     //TAG-DEPENDENCIES//
-    compile files('libs/my-target-4.5.10.jar')
-    compile files('libs/yandex-metrica-2.41.jar')
-    compile files('libs/chartboost-6.5.1.jar')
-    compile files('libs/unity-ads-2.0.4.jar')
-    compile files('libs/applovin-6.3.0.jar')
-    compile files('libs/appodeal-1.15.7.jar')
-    compile files('libs/flurry-analytics-6.5.0.jar')
-    compile 'com.google.android.gms:play-services-ads:9.6.1'
-    compile 'com.google.android.gms:play-services-location:9.6.1'
-    compile project(":cheetah-mobile-3.4.7")
+    compile 'com.google.android.gms:play-services-ads:9.8.0'
 }
+
+//TAG-APP-GRADLE-MAIN//
