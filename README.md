@@ -10,11 +10,12 @@
 + Choose `Full Export` for the first export. 
 + Press `Select Plugins` in export menu, check `Ads` and `Bitop` pluigns. 
 + Export project.
-+ Follow next instructions for selected platform.
++ Download and unzip plugin archive, then follow next instructions for selected platform.
 
 ### Android Configuration
 
 + place `Appodeal` folder and `cheetah-mobile-3.4.7.aar` from `ads/source/Android/libs` to your libs folder.
++ place `AdsAppodeal.java` file from `ads/source/Android/src/com/giderosmobile/android/plugins/ads/frameworks` folder to your `com/giderosmobile/android/plugins/ads/frameworks` folder.
 + open build.gradle for your app and add there following lines below `//TAG-DEPENDENCIES//`:
 ```
     compile fileTree(include: ['*.jar'], dir: 'libs/Appodeal')
@@ -31,7 +32,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
-++ add following to your `AndroidManifest.xml` under application tag below `<!-- TAG:APPLICATION-EXTRA -->`:
++ add following to your `AndroidManifest.xml` under application tag below `<!-- TAG:APPLICATION-EXTRA -->`:
 ```
         <meta-data android:name="com.appodeal.framework" android:value="gideros" />
         <receiver android:name="com.appodeal.ads.AppodealPackageAddedReceiver" android:exported="true" android:enabled="true">
